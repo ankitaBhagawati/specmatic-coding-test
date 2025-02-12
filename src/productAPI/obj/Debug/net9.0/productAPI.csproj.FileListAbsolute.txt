@@ -31,3 +31,4 @@ C:\Users\91995\OneDrive\Desktop\specmatic-coding-test-main\src\productAPI\obj\De
 C:\Users\91995\OneDrive\Desktop\specmatic-coding-test-main\src\productAPI\obj\Debug\net9.0\productAPI.pdb
 C:\Users\91995\OneDrive\Desktop\specmatic-coding-test-main\src\productAPI\obj\Debug\net9.0\productAPI.genruntimeconfig.cache
 C:\Users\91995\OneDrive\Desktop\specmatic-coding-test-main\src\productAPI\obj\Debug\net9.0\ref\productAPI.dll
+C:\Users\91995\OneDrive\Desktop\specmatic-coding-test-main\src\productAPI\obj\Debug\net9.0\productAPI.sourcelink.json

@@ -31,6 +31,12 @@ public class ProductService : IProductService
         var inventory = dto.GetValueOrDefault("inventory");
         int inventoryInt = 0;
 
+        var type = dto.GetValueOrDefault("type");
+        var name = dto.GetValueOrDefault("name");
+        var cost = dto.GetValueOrDefault("cost");
+
+        decimal costDecimal = (decimal)0.0;
+
         if (inventory.ValueKind == JsonValueKind.Number)
         {
             inventoryInt = inventory.GetInt32();
@@ -42,8 +48,20 @@ public class ProductService : IProductService
                 throw new Exception("Please enter valid inventory!");
             }
         }
-        var type = dto.GetValueOrDefault("type");
-        var name = dto.GetValueOrDefault("name");
+
+        if (cost.ValueKind == JsonValueKind.Number)
+        {
+            costDecimal = cost.GetDecimal();
+        }
+        else if (cost.ValueKind == JsonValueKind.String)
+        {
+            if (!decimal.TryParse(cost.GetString(), out costDecimal))
+            {
+                throw new Exception("Please enter valid Cost!");
+            }
+        }
+
+
 
         if (type.ValueKind != JsonValueKind.String || name.ValueKind != JsonValueKind.String)
         {
@@ -54,13 +72,18 @@ public class ProductService : IProductService
         var productDetails = new ProductDetails
         {
             Inventory = inventoryInt,
-            Name = dto.GetValueOrDefault("name").GetString(),
-            Type = dto.GetValueOrDefault("type").GetString()
+            Name = name.GetString(),
+            Type = type.GetString(),
+            Cost = costDecimal
         };
 
         if (string.IsNullOrEmpty(productDetails.Name) || productDetails.Inventory < 1 || productDetails.Inventory > 9999)
         {
             throw new Exception("Please enter the type!");
+        }
+        if (productDetails.Cost <= (decimal)0.0 || productDetails.Cost > (decimal)9999.99)
+        {
+            throw new Exception("Please enter a valid cost!");
         }
         productDetails.Type = productDetails.Type?.ToLower();
 
@@ -75,7 +98,8 @@ public class ProductService : IProductService
             Id = _idCounter++,
             Name = productDetails.Name,
             Type = productDetails.Type,
-            Inventory = productDetails.Inventory
+            Inventory = productDetails.Inventory,
+            Cost = productDetails.Cost
         };
 
         _products.Add(product);
