@@ -16,8 +16,8 @@ class ContractTest : SpecmaticContractTest {
         @BeforeAll
         fun setUp() {
             System.setProperty("host", "localhost")
-            System.setProperty("port", "8090")
-            System.setProperty("endpointsAPI", "http://localhost:8090/actuator/mappings")
+            System.setProperty("port", "3000")
+            System.setProperty("endpointsAPI", "http://localhost:3000/actuator/mappings")
             System.setProperty("SPECMATIC_GENERATIVE_TESTS", "true")
 
             context = SpringApplication.run(Application::class.java)
