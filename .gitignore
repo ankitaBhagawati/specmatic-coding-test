@@ -1,0 +1,9 @@
+target/*
+build/*
+.DS_Store
+lib/*
+*.iml
+*.idea
+.specmatic
+.vscode/*
+reports
